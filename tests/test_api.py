@@ -50,3 +50,11 @@ def test_top_tracks():
 def test_top_customers():
     response = client.get('/top_customers/')
     assert response.status_code == 200
+
+
+# test de correction de bug
+
+def test_top_customers_limit():
+    response = client.get("/top_customers/?top=3")
+    assert response.status_code == 200
+    assert len(response.json()) == 3

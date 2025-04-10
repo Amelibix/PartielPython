@@ -114,4 +114,4 @@ def top_customers(top: int | None = 10):
     Number of customers is limited to the given top number.
 
     """
-    return db.get_customers(top)
+    return db.get_top_customers(top) #return tous les clients au lieu des top_client !
