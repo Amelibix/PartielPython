@@ -1,7 +1,4 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
-name: Python application
+name: Python Tests
 
 on:
   push:
@@ -9,27 +6,35 @@ on:
   pull_request:
     branches: [ "main" ]
 
-permissions:
-  contents: read
-
 jobs:
-  build:
+  test:
+    name: Test on Python
+    runs-on: ${{ matrix.os }}
 
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Test par version et OS
+        python-version: ["3.10", "3.11"]
+        # Super cool
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install ruff pytest
-        pip install .[test]
-    - name: Lint with ruff
-      run: python -m ruff check
-    - name: Test with pytest
-      run: |
-       pytest tests --cov=musics --cov=tests --cov-report=term-missing
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install .[test]
+          pip install ruff 
+
+      - name: Run des test
+        run: python -m pytest
+
+      - name: Check Qualiter avec ruff
+        run: ruff check .

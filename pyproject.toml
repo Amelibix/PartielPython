@@ -9,14 +9,17 @@ dependencies = [
   'pytest',
   'rich',
   'fastapi[standard]',
-  'ruff'
-]
-
-[project.optional-dependencies]
-test = [
-  'pytest',
   'pytest-cov'
 ]
 
+[project.optional-dependencies]
+test = ["pytest-cov"]
+dev = ["ruff"]
+
 [tool.pytest.ini_options]
 addopts = "--cov=musics --cov=tests --cov-report=term-missing"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = ["venv", ".venv", "__pycache__"]
