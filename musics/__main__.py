@@ -3,7 +3,7 @@
 import argparse
 
 from . import cli
-
+# Erreur avec float
 def positive_float(value):
     f = float(value)
     if f <= 0:
@@ -38,5 +38,5 @@ def main(argv=None):
             cli.top_customers(top)
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':# pragma: no cover (sinon il est pris en compte dans le test )
     main()
