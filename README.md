@@ -279,6 +279,8 @@ Mettez en place un outil de vérification de la qualité du code : installez,
 configurez et utilisez `ruff`. Mettez en place dans votre dépôt Git des
 méthodes pour s’assurer que le code suit toujours ces bonnes pratiques.
 
+Installation de ruff, commande pour vérifier : ruff check . --fix 
+
 ## Réponses et remarques
 
 Si vous avez des réponses à écrire, des remarques à faire sur votre travail,

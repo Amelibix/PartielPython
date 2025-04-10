@@ -14,7 +14,6 @@ def test_customers():
     main(argv)
 
 import pytest
-from musics.__main__ import main
 
 def test_invalid_top():
     with pytest.raises(SystemExit):
