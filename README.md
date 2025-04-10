@@ -223,8 +223,12 @@ la fois la correction du bug et un test de non-régression.
 
 6. Dans le fichier `cli.py`, à quoi sert le paramètre « file » ?
 
+Le paramètre file permet de rediriger la sortie affichée par la fonction vers un autre support que le terminal
+
 7. Dans le fichier `__main__.py`, à quoi sert le commentaire « pragma:
    no cover » ?
+
+Le commentaire # pragma: no cover indique à l’outil de mesure pytest d’ignorer cette ligne lorsqu’il calcule la couverture de code.
 
 8. Admettons que vous ayez une couverture de 100% sur l’ensemble de
    l’application. Serait-ce suffisant pour que l’ensemble du code
@@ -232,11 +236,23 @@ la fois la correction du bug et un test de non-régression.
    être idéalement réalisés ? (Ne les écrivez pas, décrivez-les
    simplement.)
 
+Non, avoir 100% ne garantie pas que le code fonctionne correctement. Cela signifie juste que la ligne de code a été exécutée au moins une fois pendant le test.
+Il est possible de faire également :
+- des tests de robustesse : pour vérifier les erreurs 
+- des tests d'intégrations : pour vérifer l'api et la bdd 
+- des tests de performances : pour vérifier la vitesse 
+
 9. Pour tester l’ensemble de l’application, dans quel ordre
     réaliseriez-vous les tests et pourquoi ? À quoi cela sert-il de
     regrouper une correction de bug et un test de non-régression dans
     un commit commun, ne comprenant que cela ?
 
+L'ordre serait : 
+- test_db : car c'est la BDD 
+- test_api : car utilisation de l'api 
+- test_cli : car affiche les données de db dans le terminal 
+- test_main : car il dépend de tout le reste 
+Avoir un commit commun avec les bugs permet de voir directement toutes les erreurs possible de l'application 
 ### Ajoutez une fonctionnalité en TDD
 
 Ajoutez une fonctionnalité de votre en suivant la méthode TDD (Test Driven Development). Vous
