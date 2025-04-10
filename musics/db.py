@@ -241,3 +241,15 @@ def get_top_customers(top=10):
     cursor.close()
     return rows
 """Ajout du parametre top et de LIMIT ?"""
+
+
+#
+def search_artists(query):
+    cursor = get_connection().cursor()
+    rows = cursor.execute('''
+        SELECT *
+        FROM Artist
+        WHERE Name LIKE ?
+    ''', (f'%{query}%',)).fetchall()
+    cursor.close()
+    return rows

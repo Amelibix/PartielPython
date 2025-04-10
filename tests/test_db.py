@@ -52,3 +52,9 @@ def test_get_customer_by_id():
 def test_get_artist_by_id():
     rows = db.get_artists(1)
     assert len(rows) == 1
+
+
+#TDD
+def test_search_artists_by_name():
+    rows = db.search_artists("of")
+    assert any("System Of A Down" in row["Name"] or "The Office" in row["Name"] for row in rows)
