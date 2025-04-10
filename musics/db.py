@@ -236,6 +236,8 @@ def get_top_customers(top=10):
         JOIN InvoiceLine USING (InvoiceId)
         GROUP BY Customer.CustomerId
         ORDER BY total DESC
-    ''').fetchall()
+       LIMIT ?
+    ''', (top,)).fetchall()
     cursor.close()
     return rows
+"""Ajout du parametre top et de LIMIT ?"""
