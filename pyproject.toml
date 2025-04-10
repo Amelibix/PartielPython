@@ -1,3 +1,6 @@
+[tool.setuptools]
+packages = []
+
 [project]
 name = 'musics'
 version = '0.1'
@@ -8,11 +11,13 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-test = [
-  'pytest',
-  'pytest-cov',
-  'ruff'
-]
+test = ["pytest", "pytest-cov"]
+dev = ["ruff"]
 
 [tool.pytest.ini_options]
 addopts = "--cov=musics --cov=tests --cov-report=term-missing"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = ["venv", ".venv", "__pycache__"]
