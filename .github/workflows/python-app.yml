@@ -13,9 +13,9 @@ jobs:
 
     strategy:
       matrix:
-        # Test par version et OS
+
         python-version: ["3.10", "3.11"]
-        # Super cool
+
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
