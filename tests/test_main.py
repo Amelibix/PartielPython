@@ -1,5 +1,5 @@
 from musics.__main__ import main
-
+import pytest
 
 def test_artists():
     argv = ['artists']
@@ -12,8 +12,6 @@ def test_tracks():
 def test_customers():
     argv = ['customers']
     main(argv)
-
-import pytest
 
 def test_invalid_top():
     with pytest.raises(SystemExit):
