@@ -17,13 +17,19 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     'command',
     help='command to launch',
-    choices=('artists', 'tracks', 'customers'),
+    choices=('artists', 'tracks', 'customers', 'search'),
 )
 parser.add_argument(
     '--top',
     help='number of top elements to display',
     type=positive_float,
     default=10,
+)
+
+parser.add_argument( # ajout de search pour le TDD
+    '--query',
+    help='text to search for (used with command "search")',
+    type=str,
 )
 
 def main(argv=None):
@@ -36,7 +42,11 @@ def main(argv=None):
             cli.top_tracks(top)
         case 'customers':
             cli.top_customers(top)
+        case 'search':
+            cli.search_artists(args.query)
 
 
 if __name__ == '__main__':# pragma: no cover (sinon il est pris en compte dans le test )
     main()
+
+# pour vérifier TDD :  python -m musics search --query of
