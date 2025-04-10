@@ -4,6 +4,12 @@ import argparse
 
 from . import cli
 
+def positive_float(value):
+    f = float(value)
+    if f <= 0:
+        raise argparse.ArgumentTypeError(f'{value} is not a positive number')
+    return f
+
 parser = argparse.ArgumentParser(
     prog='muscis',
     description='Display various information about music',
@@ -16,14 +22,13 @@ parser.add_argument(
 parser.add_argument(
     '--top',
     help='number of top elements to display',
-    type=float,
+    type=positive_float,
     default=10,
 )
 
 def main(argv=None):
     args = parser.parse_args(argv)
-    if (top := args.top) <= 0:
-        raise argparse.ArgumentTypeError(f'{top} is not a positive number')
+    top = args.top
     match args.command:
         case 'artists':
             cli.top_artists(top)
@@ -33,5 +38,5 @@ def main(argv=None):
             cli.top_customers(top)
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == '__main__':
     main()
