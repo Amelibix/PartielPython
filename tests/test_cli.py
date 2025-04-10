@@ -30,3 +30,9 @@ def test_top_tracks_limit():
     cli.top_tracks(top=3, file=string)
     text = string.getvalue()
     assert "Top 3 tracks" in text
+
+def test_search_artists_cli():
+    string = StringIO()
+    cli.search_artists("of", file=string)
+    text = string.getvalue().lower()
+    assert "of" in text

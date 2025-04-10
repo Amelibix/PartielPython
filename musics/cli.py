@@ -54,3 +54,13 @@ def top_customers(top=10, file=None):
 
     console = Console(file=file)
     console.print(table)
+
+def search_artists(query, file=None):
+    table = Table(title=f'Artists matching "{query}"')
+    table.add_column('Artist')
+
+    for row in db.search_artists(query):
+        table.add_row(row['Name'])
+
+    console = Console(file=file)
+    console.print(table)
