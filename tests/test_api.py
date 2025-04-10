@@ -58,3 +58,10 @@ def test_top_customers_limit():
     response = client.get("/top_customers/?top=3")
     assert response.status_code == 200
     assert len(response.json()) == 3
+
+
+#TDD
+def test_search_artists_api():
+    response = client.get("/search_artists/?query=of")
+    assert response.status_code == 200
+    assert any("of" in row["Name"].lower() for row in response.json())

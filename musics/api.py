@@ -115,3 +115,9 @@ def top_customers(top: int | None = 10):
 
     """
     return db.get_top_customers(top) #return tous les clients au lieu des top_client !
+
+#TDD
+@app.get("/search_artists/")
+def search_artists(query: str):
+
+    return db.search_artists(query)
